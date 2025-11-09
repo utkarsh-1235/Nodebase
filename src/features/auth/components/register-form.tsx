@@ -6,17 +6,17 @@ import {useForm} from "react-hook-form";
 import {authClient} from "@/lib/auth-client";
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
-import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
+import {Form, FormControl, FormField, FormItem, FormLabel} from "@/components/ui/form";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import {
     Card,
-    CardContent,
     CardDescription,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
+import Image from "next/image";
 
 const registerFormSchema = z.object({
     email: z.string().email("Please enter a valid email address"),
@@ -64,8 +64,8 @@ export function RegisterForm() {
 const isPending = form.formState.isSubmitting;
 
 return (
-    <div className="flex flex-col items-center mt-6 gap-6">
-   <Card className="w-1/2" >
+    <div className="flex flex-col items-center gap-6">
+   <Card className="w-full" >
     <CardHeader className="text-center">
         <CardTitle>
             Get started
@@ -77,23 +77,25 @@ return (
      <Form {...form}>
        <form onSubmit={form.handleSubmit(onSubmit)}>
             <div className="grid gap-6">
-                 <div className="flex flex-col items-center gap-4">
+                 <div className="flex flex-col mx-auto items-center gap-4">
                     <Button
                     variant="outline"
-                    className="w-3/4 ml-4"
+                    className="w-full"
                     type="button"
                     disabled={isPending}>
+                        <Image alt="GitHub" width={20} height={20}  src="./github.svg"/>
                      Continue with GitHub
                     </Button>
                     <Button
                     variant="outline"
-                    className="w-3/4 ml-4"
+                    className="w-full"
                     type="button"
                     disabled={isPending}>
+                        <Image alt="Google" width={20} height={20}  src="./google.svg"/>
                      Continue with Google
                     </Button>
                  </div>
-                 <div className="ml-4 mr-4 grid gap-6">
+                 <div className="w-3/4 mx-auto grid gap-6">
                      <FormField
                      control={form.control}
                      name="email"
